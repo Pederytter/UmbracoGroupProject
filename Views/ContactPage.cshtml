@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+    Layout = "Master.cshtml";
+
+    var imageRef = Umbraco.Field("image");
+}
+<section class="container">
+    <div class="row" style="margin-top: 200px">
+        <div class="col-6">
+            <img id="contact-image" src="@imageRef" />
+        </div>
+        <div class="col-6">
+            @Html.Action("Index", "ContactFormSurface")
+        </div>
+    </div>
+</section>

@@ -1,0 +1,44 @@
+﻿@model AarhusDevGroup.ViewModels.ContactForm
+
+
+@using (Html.BeginUmbracoForm("HandleFormSubmit", "ContactFormSurface", new object { }, new { @class = "idk" }))
+{
+    if (TempData["Success"] == null)
+    {
+
+        <div>
+            @Html.LabelFor(m => m.Name, new { @class = "needtis" })
+            <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Email, new { @class = "needtis" })
+            <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Subject, new { @class = "needtis" })
+            <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Subject)
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Message, new { @class = "needtis" })
+            <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Message)
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+            </div>
+        </div>
+            <div class="form-group">
+                <button class="btn btn-primary pull-right" type="submit">Submit form</button>
+            </div>
+    } else
+    {
+        <p>Thank you very much!</p>
+    }
+}

@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+    var memberService = ApplicationContext.Current.Services.MemberService;
+    var ActiveMembers = memberService.GetMembersByGroup("Active");
+    var ProspectMembers = memberService.GetMembersByGroup("Prospect");
+
+}
+
+
+<h2>Active members:</h2>
+<section class="row">
+    @foreach (var member in ActiveMembers)
+    {
+        <div class="col-md-4">
+            <p>
+                @(member.GetValue("firstname") + " "
+                                     + member.GetValue("lastname")) <br />
+                @member.GetValue("address") <br />
+                @(member.GetValue("zip") + " "
+                                        + member.GetValue("city")) <br />
+                Mobile: @member.GetValue("mobile")<br />
+            </p>
+
+
+            @{
+                string fullPath = member.GetValue("photo").ToString();
+                string[] substrings = fullPath.Split(',');
+                string srcString = substrings[2];
+                string[] srcSubStrings = srcString.Split(':');
+                string srcPath = srcSubStrings[1].Replace("\"", "");
+                srcPath = srcPath.Replace("}", "");
+            }
+
+            <img class="img-responsive" src="@srcPath" />
+        </div>
+
+    }
+
+</section>
+
+
+<h2>Prospect members:</h2>
+<section class="row">
+    @foreach (var member in ProspectMembers)
+    {
+        <div class="col-md-4">
+            <p>
+                @(member.GetValue("firstname") + " "
+                                     + member.GetValue("lastname")) <br />
+                Mobile: @member.GetValue("mobile")<br />
+            </p>
+        </div>
+
+    }
+
+</section>
